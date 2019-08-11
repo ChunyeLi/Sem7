@@ -1,0 +1,60 @@
+\documentclass[12pt,3p]{elsarticle}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newcommand{\contradiction}{
+  \Rightarrow\!\Leftarrow
+}
+\begin{document}
+
+\begin{frontmatter}
+
+\title{ Problem Sheet 1 }
+
+\author{Sourabh Aggarwal}
+\address{111601025@smail.iitpkd.ac.in}
+
+\end{frontmatter}
+
+Unless mentioned, assume given graph to be $G = (V, E)$
+
+\section{2}
+
+\subsection{(a)}
+
+\subsubsection{Condition is neccessary}
+Assume that graph $(V, E)$ is acyclic. 
+
+Claim: $\exists v \in V; \operatorname{Indeg} v = 0$
+
+Proof: Assume not, that implies for each vertex $\operatorname{Indeg} v > 0$. Thus start from any arbitrary vertex $v$ and go to vertex $u$ s.t. $(u, v) \in E$. Repeat the same procedure from $u$. At end we must repeat a already seen vertex by pigeon hole principle, thus giving us a cycle $\contradiction$.
+
+Thus pick that vertex with zero $\operatorname{Indeg}$ (remove it from the graph) and add it as a first vertex for our topological ordering. Repeat the same procedure with the resultant graph, and result will be a valid topological ordering as for each edge $(u, v)$, $u$ is coming before $v$.
+
+\subsubsection{Condition is sufficient}
+
+Assume that graph $(V, E)$ has a topological ordering $(t_1, t_2, \dots, t_{|V|})$.
+
+For a cycle to exist there must be an edge $(t_j, t_i)$ such that $j > i$ which is not possible.
+
+\subsection{(b)}
+
+First direction follows trivially.
+
+For other direction, consider shortest cycle $S = \{v_{i_1}, v_{i_2}, \dots, v_{i_{|S|}}\}$ (obviously $|S| > 3$), then, either their is an edge $(v_{i_1}, v_{i_3}) \text{ or } (v_{i_3}, v_{i_1})$. In former case we get a shorter cycle $v_{i_1}, v_{i_3}, \dots, v_{i_{|S|}}$ whereas in later we get a triangle $v_{i_1}, v_{i_2}, v_{i_3}$ both of which are not possible.
+
+\subsection{(c)}
+
+Consider two topological orderings $v_{i_1}, v_{i_2}, \dots, v_{i_{|V|}}$ and $v_{i_1'}, v_{i_2'}, \dots, v_{i_{|V|}'}$ 
+
+Let the first point of difference occur at index $k$, i.e. $v_{i_1} = v_{i_1'}, v_{i_2} = v_{i_2'}, \dots, v_{i_{k - 1}} = v_{i_{k - 1}'} \text{ and } v_{i_k} \neq v_{i_k'}$. Thus for the first topological sorting, there is an edge $(v_{i_k}, v_{i_k'}) \in E$ whereas in second there is $(v_{k'}, v_{k})$ which is absurd.
+
+\subsection{(d)}
+
+\subsubsection{Condition is neccessary}
+
+Assume that the set of arcs form a minimal feedback arc set, that implies, removing them we get a DAG which has a topological ordering $v_{i_1}, v_{i_2}, \dots, v_{i_{|V|}}$. Since our feedback arc set is minimal, that implies adding any edge of it we get a cycle and hence its orientation is backward that is it is of the form $(v_{i_j}, v_{i_k})$ s.t. $j > k$. Thus reversing these edges will give us a DAG as it will have the same topological ordering. To prove that it is minimal, .
+
+
+\end{document}
