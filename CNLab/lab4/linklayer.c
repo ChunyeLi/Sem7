@@ -5,10 +5,10 @@
 #include "phy.h"
 #include "net.h"
 #include <errno.h>
+#include <unistd.h>
 
 const int NR_BUFS = (MAX_SEQ + 1) / 2;
 bool no_nak = true;
-SeqNo oldest_frame = MAX_SEQ + 1;
 
 bool between(SeqNo a, SeqNo b, SeqNo c) {
 	bool ok = false;
@@ -149,7 +149,7 @@ void send_frame(FrameKind fk, SeqNo frame_nr, SeqNo frame_expected, Packet buffe
 	s.ack = (frame_expected + MAX_SEQ) % (MAX_SEQ + 1);
 	if (fk == NAK) {
 		no_nak = false;
-	} 
+	}
 	int len = 2;
 	s.length[0] = len & 0xF;
 	s.length[1] = (len >> 8) & 0xF;
@@ -162,7 +162,7 @@ void send_frame(FrameKind fk, SeqNo frame_nr, SeqNo frame_expected, Packet buffe
 }	
 
 int main(int argc, char** argv) {
-
+	// printf("NR_BUFS = %d\n", NR_BUFS);
 	SeqNo ack_expected, next_frame_to_send, frame_expected, too_far;
 	Packet out_buf[NR_BUFS], in_buf[NR_BUFS];
 	bool arrived[NR_BUFS];
@@ -185,7 +185,7 @@ int main(int argc, char** argv) {
 				// printf("Timeout event occured\n");
 				Timer *timer = (Timer*) event.eventData;
 				// printf("Timeout for SEQ no %d\n", timer->seqNo);
-				send_frame(DATA, oldest_frame, frame_expected, out_buf);
+				send_frame(DATA, timer->seqNo, frame_expected, out_buf);
 				break;
 			case ACK_TIMEOUT:
 				debugPrint("ACK timeout event occured");
@@ -219,6 +219,9 @@ int main(int argc, char** argv) {
 								Frame tmp;
 								tmp.packet = in_buf[frame_expected % NR_BUFS];
 								int len = 2;
+								if (tmp.packet.data[1] == 255) {
+									len = 1;
+								}
 								tmp.length[0] = len & 0xF;
 								tmp.length[1] = (len >> 8) & 0xF;
 								toNetworkLayer(&tmp);
@@ -262,9 +265,9 @@ int main(int argc, char** argv) {
 				break;
 		}
 		eventCleanup(&event);
-		if (nbuffered < NR_BUFS) {
-			
-		}
+		// if (nbuffered >= NR_BUFS) {
+		// 	sleep(15);
+		// }
 	}
 	return 0;
 }
