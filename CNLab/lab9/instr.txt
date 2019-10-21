@@ -1,0 +1,6 @@
+-------------q1------------------- Round Robin
+arrival time, packet id, queue no, packet length.
+rr serviceTimeOfServer
+
+-------------q2------------------- WFQ
+wfq serviceTimeOfServer wf1 wf2 wf3 wf4
