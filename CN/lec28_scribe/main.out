@@ -1,0 +1,7 @@
+\BOOKMARK [1][-]{section.1}{TCP Sliding Window Example}{}% 1
+\BOOKMARK [1][-]{section.2}{Delayed ACK}{}% 2
+\BOOKMARK [1][-]{section.3}{Nagle's Algorithm}{}% 3
+\BOOKMARK [1][-]{section.4}{Silly Window Syndrome and Clark's Algorithm}{}% 4
+\BOOKMARK [1][-]{section.5}{TCP Timer Management}{}% 5
+\BOOKMARK [2][-]{subsection.5.1}{RTO}{section.5}% 6
+\BOOKMARK [2][-]{subsection.5.2}{Other TCP Timers}{section.5}% 7
