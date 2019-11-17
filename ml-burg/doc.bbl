@@ -1,0 +1,25 @@
+\begin{thebibliography}{1}
+
+\bibitem{balachandran-dhamdhere-biswas-90}
+{\sc Balachandran, A., Dhamdhere, D.~M., and Biswas, S.}
+\newblock Efficient retargetable code generation using bottom-up tree pattern
+  matching.
+\newblock {\em Computer Languages 15(3)\/} (1990), 127--140.
+
+\bibitem{emmelmann-92}
+{\sc Emmelmann, H.}
+\newblock {\em Testing completeness of code selector specifications}.
+\newblock Springer-Verlag, 1992, pp.~163--175.
+
+\bibitem{fraser-hanson-proebsting-92}
+{\sc Fraser, C.~W., Hanson, D.~R., and Proebsting, T.~A.}
+\newblock Engineering a simple, efficient code generator generator.
+\newblock In {\em Letters on Programming Languages and Systems\/} (1992), ACM.
+
+\bibitem{proebsting-pldi92}
+{\sc Proebsting, T.~A.}
+\newblock Simple and efficient burs table generation.
+\newblock In {\em {SIGPLAN} '92 Conf. on Programming Language Design and
+  Implementation\/} (June 1992), ACM, pp.~331--340.
+
+\end{thebibliography}

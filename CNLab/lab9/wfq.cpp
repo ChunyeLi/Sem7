@@ -4,7 +4,6 @@ using namespace std;
 
 const float eps = 1e-4;
 
-
 struct packet {
     float arrivalTime, departureTime;
     int pkID, pLen, qNo;
@@ -15,9 +14,6 @@ struct packet {
     bool operator < (const packet &other) const {
         return departureTime > other.departureTime;
     }
-//    bool operator == (const packet &other) const {
-//        return (abs(arrivalTime - other.arrivalTime) < eps and pkID == other.pkID and qNo == other.qNo and pLen == other.pLen);
-//    }
 };
 
 vector<packet> q[4];
@@ -32,9 +28,7 @@ int main (int argc, char *argv[]) {
     float arrivalTime;
     cout << fixed << setprecision(2);
     int pkID, qNo, pLen;
-    int pcnt = 0;
     while (cin >> arrivalTime) {
-        pcnt++;
         cin >> pkID >> qNo >> pLen;
         qNo--;
         q[qNo].push_back(packet(arrivalTime, pkID, qNo, pLen, -1));

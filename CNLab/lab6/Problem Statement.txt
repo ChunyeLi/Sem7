@@ -1,0 +1,23 @@
+h1 connected to r1 (router) which is connected to r2 (router)       [h1 <--> r1 <--> r2]
+We don't know the password of r1 - It is "user@x" where we need to find x.
+
+1. First find the maximum possible mtu which we can send (without fragmentation) from h1 to r2. This is the value of x mentioned above
+    -> r2 IP address using ifconfig - 192.168.1.2
+    -> Use 'hping' to find the size (-d flag argument) at which fragmentation occurs
+        COMMAND: sudo hping3 -1 -y -d 396 192.168.101.2
+        -1 is for icmp
+        -y is to set don't fragment flag
+    -> Fragmentation first occurs at 396. So, mtu is (395 + (header_size = 28 (as ICMP header size is of 8 bytes))) = 423
+
+2. Login to r1 which contains file ipfrag.tar.gz. This tar file has around 540 small files each of which is a fragment of an IP packet. 
+    Of the 540 fragments only 54 are correct (check the checksum in the header) and others has errors. 
+    Use IPv4 header format to read the fragments and combine the correct fragments to generate three messages.
+    The message number corresponding to a fragment can be identified with the help of id field in the header and its sequence number in the 
+    header, with the help of offset.
+
+3. Tell the message along with source and destination of the message.
+
+Notes -
+-> Networking data are always stored in network order (big endian) - so they can be read using normal character array.
+-> The 16-bit IP checksum should be 0xFFFF (during verification).
+-> ID and offset fields need not be contiguous.

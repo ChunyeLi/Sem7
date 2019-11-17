@@ -4,22 +4,31 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// struct iphdr {
-//     __uint8_t version : 4;
-//     __uint8_t ihl : 4;
-//     __uint8_t tos;
-//     __uint16_t len;
-//     __uint16_t id;
-//     __uint16_t flags : 3;
-//     __uint16_t frag_offset : 13;
-//     __uint8_t ttl;
-//     __uint8_t proto;
-//     __uint16_t csum;
-//     __uint32_t saddr;
-//     __uint32_t daddr;
-//     __uint32_t op1;
-//     __uint32_t op2;
-// } __attribute__((packed));
+// consider the unsigned hexadecimal number 0x1234, which requires at least two bytes to represent. In a big-endian ordering they would be [ 0x12, 0x34 ], while in a little-endian ordering, the bytes would be arranged [ 0x34, 0x12 ]
+// __BYTE_ORDER is __LITTLE_ENDIAN
+// struct iphdr
+//   {
+// #if __BYTE_ORDER == __LITTLE_ENDIAN
+//     unsigned int ihl:4;
+//     unsigned int version:4;
+// #elif __BYTE_ORDER == __BIG_ENDIAN
+//     unsigned int version:4;
+//     unsigned int ihl:4;
+// #else
+// # error	"Please fix <bits/endian.h>"
+// #endif
+//     uint8_t tos;
+//     uint16_t tot_len;
+//     uint16_t id;
+//     uint16_t frag_off;
+//     uint8_t ttl;
+//     uint8_t protocol;
+//     uint16_t check;
+//     uint32_t saddr;
+//     uint32_t daddr;
+//     /*The options start here. */
+//   };
+
 
 struct ipPacket {
   unsigned int id;
@@ -83,18 +92,18 @@ int main () {
       if (!srcDone) {
         printf("Source IP: ");
         for (int k = 12; k < 16; k++) {
-          printf("%u%c", buffer[k], ":\n"[k == 15]);
+          printf("%u%c", buffer[k], ".\n"[k == 15]);
         }
         srcDone = true;
         printf("Destination IP: ");
         for (int k = 16; k < 20; k++) {
-          printf("%u%c", buffer[k], ":\n"[k == 19]);
+          printf("%u%c", buffer[k], ".\n"[k == 19]);
         }
       }
-      unsigned int id = ((unsigned int) buffer[4] << 8) | ((unsigned int)buffer[5]);
+      unsigned int id = ((unsigned int) buffer[4] << 8) | ((unsigned int)buffer[5]);  // big endian, most significant byte is placed first.
       if (id == 14926) {
         pkts[0][cnt[0]].id = ((unsigned int)buffer[6] << 8) | ((unsigned int)buffer[7]);
-        pkts[0][cnt[0]].data = (unsigned char *)malloc(len - headerSize + 1 * sizeof(unsigned char));
+        pkts[0][cnt[0]].data = (unsigned char *)malloc((len - headerSize + 1) * sizeof(unsigned char));
         for (unsigned int i = headerSize; i < len; i++) {
           pkts[0][cnt[0]].data[i - headerSize] = buffer[i];
         }
@@ -102,7 +111,7 @@ int main () {
         cnt[0]++;
       } else if (id == 26437) {
         pkts[1][cnt[1]].id = ((unsigned int)buffer[6] << 8) | ((unsigned int)buffer[7]);
-        pkts[1][cnt[1]].data = (unsigned char *)malloc(len - headerSize + 1 * sizeof(unsigned char));
+        pkts[1][cnt[1]].data = (unsigned char *)malloc((len - headerSize + 1) * sizeof(unsigned char));
         for (unsigned int i = headerSize; i < len; i++) {
           pkts[1][cnt[1]].data[i - headerSize] = buffer[i];
         }
@@ -110,7 +119,7 @@ int main () {
         cnt[1]++;
       } else {
         pkts[2][cnt[2]].id = ((unsigned int)buffer[6] << 8) | ((unsigned int)buffer[7]);
-        pkts[2][cnt[2]].data = (unsigned char *)malloc(len - headerSize + 1 * sizeof(unsigned char));
+        pkts[2][cnt[2]].data = (unsigned char *)malloc((len - headerSize + 1) * sizeof(unsigned char));
         for (unsigned int i = headerSize; i < len; i++) {
           pkts[2][cnt[2]].data[i - headerSize] = buffer[i];
         }

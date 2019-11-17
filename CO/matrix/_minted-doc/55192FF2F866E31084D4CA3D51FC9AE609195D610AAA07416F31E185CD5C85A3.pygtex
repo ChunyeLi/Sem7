@@ -1,0 +1,110 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}assert.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}time.h\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}define N 5120}
+
+\PYG{k+kt}{double} \PYG{n}{arr1}\PYG{p}{[}\PYG{n}{N}\PYG{p}{][}\PYG{n}{N}\PYG{p}{],} \PYG{n}{arr2}\PYG{p}{[}\PYG{n}{N}\PYG{p}{][}\PYG{n}{N}\PYG{p}{],} \PYG{n}{res}\PYG{p}{[}\PYG{n}{N}\PYG{p}{][}\PYG{n}{N}\PYG{p}{];}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+  \PYG{c+c1}{// int B = CLS / sizeof(double); // CLS (Cache line size) = 64 in this machine and can be obtained using \PYGZdq{}getconf LEVEL1\PYGZus{}DCACHE\PYGZus{}LINESIZE\PYGZdq{}.}
+  \PYG{k+kt}{int} \PYG{n}{B} \PYG{o}{=} \PYG{l+m+mi}{8}\PYG{p}{;}
+  \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+    \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{j}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{n}{arr1}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mf}{0.5}\PYG{p}{;}
+      \PYG{n}{arr2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mf}{0.5}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{k+kt}{double} \PYG{o}{*}\PYG{n}{rres}\PYG{p}{,} \PYG{o}{*}\PYG{n}{rmul1}\PYG{p}{,} \PYG{o}{*}\PYG{n}{rmul2}\PYG{p}{,} \PYG{n}{tmp}\PYG{p}{;}
+  \PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{,} \PYG{n}{k}\PYG{p}{,} \PYG{n}{ii}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{st} \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{)}\PYG{n}{clock}\PYG{p}{();}
+  \PYG{k}{for} \PYG{p}{(}\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i} \PYG{o}{+=} \PYG{n}{B}\PYG{p}{)}
+    \PYG{k}{for} \PYG{p}{(}\PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{k} \PYG{o}{+=} \PYG{n}{B}\PYG{p}{)}
+      \PYG{k}{for} \PYG{p}{(}\PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{B}\PYG{p}{)}
+        \PYG{k}{for} \PYG{p}{(}\PYG{n}{ii} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{rres} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{res}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{],} \PYG{n}{rmul1} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{arr1}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{k}\PYG{p}{];} \PYG{n}{ii} \PYG{o}{\PYGZlt{}} \PYG{n}{B}\PYG{p}{;} \PYG{n}{ii}\PYG{o}{++}\PYG{p}{,} \PYG{n}{rres} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{,} \PYG{n}{rmul1} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{arr2}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{j}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rmul2} \PYG{o}{+=} \PYG{n}{N}\PYG{p}{;}
+          \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{rmul1}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+          \PYG{n}{rres}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{tmp} \PYG{o}{*} \PYG{n}{rmul2}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+        \PYG{p}{\PYGZcb{}}
+  \PYG{k+kt}{double} \PYG{n}{en} \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{)}\PYG{n}{clock}\PYG{p}{();}
+  \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}time taken: \PYGZpc{}f\PYGZdq{}}\PYG{p}{,} \PYG{p}{(}\PYG{n}{en} \PYG{o}{\PYGZhy{}} \PYG{n}{st}\PYG{p}{)}\PYG{o}{/}\PYG{n}{CLOCKS\PYGZus{}PER\PYGZus{}SEC}\PYG{p}{);}
+  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

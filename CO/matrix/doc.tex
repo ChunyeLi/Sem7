@@ -1,0 +1,204 @@
+\documentclass[12pt,3p]{elsarticle}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+\newcommand{\swastik}[1]{%
+    \begin{tikzpicture}[#1]
+        \draw (-1,1)  -- (-1,0) -- (1,0) -- (1,-1);
+        \draw (-1,-1) -- (0,-1) -- (0,1) -- (1,1);
+    \end{tikzpicture}%
+}
+
+\tikzset{
+    treenode/.style={align=center, inner sep=0pt},
+    % Receiver Node
+    node_rec/.style = {treenode, circle, white, font=\bfseries, draw=black, fill=black, text width=0.8cm},
+    % Sender Node
+    node_sen/.style = {treenode, circle, red, draw=red, very thick, text width=0.8cm}
+}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{minted}
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \def\@oddfoot{}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
+\setminted{breaklines=true, tabsize=2, breaksymbolleft=}
+\begin{document}
+
+\begin{frontmatter}
+\title{Matrix Multiplication Optimisation Assignment}
+\author{Sourabh Aggarwal}
+\address{111601025@smail.iitpkd.ac.in}
+\end{frontmatter}
+
+\section{Optimisations}
+\begin{enumerate}
+  \item I started with basic blocking. Following are the results which I obtained which was expected as \texttt{LEVEL1\_DCACHE\_LINESIZE = 64}, this can be obtained by executing from terminal:
+\begin{minted}{bash}
+>> getconf LEVEL1_DCACHE_LINESIZE
+\end{minted}
+And since size of double is 8, optimality is obtained at block size of 8 (= 64/8).
+
+\begin{minted}{bash}
+  ------------ Results -------------
+  Iteration: 1
+  1, 6445.611429
+  Iteration: 2
+  2, 2272.318962
+  Iteration: 3
+  4, 897.756441
+  Iteration: 4
+  8, 725.708793
+  Iteration: 5
+  16, 731.699237
+  Iteration: 6
+  32, 906.470085
+  Iteration: 7
+  64, 999.502892
+  Iteration: 8
+  128, 975.474192
+  Iteration: 9
+  256, 1356.794308
+  Iteration: 10
+  512, 2576.451370
+  Iteration: 11
+  1024, 3304.505859
+  Iteration: 12
+  2048, 3478.298679
+  Iteration: 13
+  4096, 3459.928579
+  ---------- END ----------
+\end{minted}
+
+\item After this I tried loop re-ordering and found the best ordering to be \texttt{i-k-j} (both for outer 3 loops and inner 3 loops). 
+
+\item Thirdly I tried to save repeated pointer arithmetic by storing the common calculation in a variable, significant time was saved doing this. 
+
+\item Lastly loop unrolling helped a lot. I started with unrolling the inner most loop which improved the time, then the second inner most which again improved the time but further unrolling increased the time taken.
+
+\end{enumerate}
+
+\section{Final Code}
+
+Following code (final implementation) took around 170 seconds.
+
+\begin{minted}{c}
+#include <stdio.h>
+#include <assert.h>
+#include <time.h>
+
+#define N 5120
+
+double arr1[N][N], arr2[N][N], res[N][N];
+
+int main() {
+  // int B = CLS / sizeof(double); // CLS (Cache line size) = 64 in this machine and can be obtained using "getconf LEVEL1_DCACHE_LINESIZE".
+  int B = 8;
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++) {
+      arr1[i][j] = i + j + 0.5;
+      arr2[i][j] = i + j + 0.5;
+    }
+  double *rres, *rmul1, *rmul2, tmp;
+  int i, j, k, ii;
+  double st = (double)clock();
+  for (i = 0; i < N; i += B)
+    for (k = 0; k < N; k += B)
+      for (j = 0; j < N; j += B)
+        for (ii = 0, rres = &res[i][j], rmul1 = &arr1[i][k]; ii < B; ii++, rres += N, rmul1 += N) {
+          tmp = rmul1[0];
+          rmul2 = &arr2[k][j];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[1];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[2];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[3];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[4];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[5];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[6];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+          rmul2 += N;
+          tmp = rmul1[7];
+          rres[0] += tmp * rmul2[0];
+          rres[1] += tmp * rmul2[1];
+          rres[2] += tmp * rmul2[2];
+          rres[3] += tmp * rmul2[3];
+          rres[4] += tmp * rmul2[4];
+          rres[5] += tmp * rmul2[5];
+          rres[6] += tmp * rmul2[6];
+          rres[7] += tmp * rmul2[7];
+        }
+  double en = (double)clock();       
+  printf("time taken: %f", (en - st)/CLOCKS_PER_SEC);
+  return 0;
+}
+\end{minted}
+
+\section{Reference}
+
+Besides basic material, I referred to \href{https://people.freebsd.org/~lstewart/articles/cpumemory.pdf}{this} text. 
+
+\end{document}

@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} Results \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+  Iteration: \PYG{l+m}{1}
+  \PYG{l+m}{1}, \PYG{l+m}{6445}.611429
+  Iteration: \PYG{l+m}{2}
+  \PYG{l+m}{2}, \PYG{l+m}{2272}.318962
+  Iteration: \PYG{l+m}{3}
+  \PYG{l+m}{4}, \PYG{l+m}{897}.756441
+  Iteration: \PYG{l+m}{4}
+  \PYG{l+m}{8}, \PYG{l+m}{725}.708793
+  Iteration: \PYG{l+m}{5}
+  \PYG{l+m}{16}, \PYG{l+m}{731}.699237
+  Iteration: \PYG{l+m}{6}
+  \PYG{l+m}{32}, \PYG{l+m}{906}.470085
+  Iteration: \PYG{l+m}{7}
+  \PYG{l+m}{64}, \PYG{l+m}{999}.502892
+  Iteration: \PYG{l+m}{8}
+  \PYG{l+m}{128}, \PYG{l+m}{975}.474192
+  Iteration: \PYG{l+m}{9}
+  \PYG{l+m}{256}, \PYG{l+m}{1356}.794308
+  Iteration: \PYG{l+m}{10}
+  \PYG{l+m}{512}, \PYG{l+m}{2576}.451370
+  Iteration: \PYG{l+m}{11}
+  \PYG{l+m}{1024}, \PYG{l+m}{3304}.505859
+  Iteration: \PYG{l+m}{12}
+  \PYG{l+m}{2048}, \PYG{l+m}{3478}.298679
+  Iteration: \PYG{l+m}{13}
+  \PYG{l+m}{4096}, \PYG{l+m}{3459}.928579
+  \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} END \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+\end{Verbatim}

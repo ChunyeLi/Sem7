@@ -1,0 +1,9 @@
+CRC as well as DATA link layer protocol
+
+lab4 network 
+h1 - 192.168.1.2 to h2 - 192.168.1.2: delay is 50 millisecond, error prob is 40%.
+h2 to h1: does not have delay, error prob is 10%.
+small stack, application, link, physical.
+open, unzip, make will create protocol
+./protocol 192.168.1.2 8500 8500
+./protocol 192.168.1.1 8500 8500
