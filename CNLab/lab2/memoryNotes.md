@@ -35,4 +35,13 @@
   ofstream o("arrivals_shape.txt");
   ifstream f("arrivals.txt");  // now use as cout, cin resp.
   ```
-* 
+* `execvp("./add", args)`. 
+* `man atoi`.
+* ```c
+  strncpy((char *)ifr.ifr_name, "eth1", IFNAMSIZ);
+  if (ioctl(sock, SIOCGIFINDEX, &ifr) == -1)
+  sll.sll_protocol = htons(ETH_P_IP);
+  sll.sll_family = AF_PACKET
+  sll.sll_ifindex = ifr.ifr_ifindex;
+  bind(sock, (struct sockaddr *)&sll, sizeof (sll))
+  ```

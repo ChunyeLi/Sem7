@@ -1,13 +1,12 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <malloc.h>
 #include <string.h>
-#include <dirent.h>
 #include <assert.h>
-#include <stdbool.h>
+#include <dirent.h>
 #include <signal.h>
-#include <unistd.h>  // exec, etc...
+#include <unistd.h>  // fork, exec, etc...
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
@@ -18,6 +17,7 @@
 #include <netinet/udp.h>		// for udp header
 #include <netinet/tcp.h>
 #include <netinet/ip_icmp.h>
-#include <arpa/inet.h>           // to avoid warning at inet_ntoa
 #include <linux/if_packet.h>
 #include <linux/if.h>
+#include <arpa/inet.h>           // to avoid warning at inet_ntoa
+#include <netdb.h>

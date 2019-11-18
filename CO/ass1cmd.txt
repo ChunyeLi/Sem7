@@ -1,1 +1,0 @@
-clang -emit-llvm hello.c -c -o hello.bc && opt -mem2reg hello.bc -o hello.bc && opt -load ./lib/LLVMMyOpt.so -myopt ./hello.bc -o hello.bc && llvm-dis hello.bc -o opt.ll && lli opt.ll    
