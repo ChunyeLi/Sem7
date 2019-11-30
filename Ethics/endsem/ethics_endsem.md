@@ -9,10 +9,15 @@
 * Three major arguments for trade secret protection:
 1. Trade secret as property
   * Trade secrets, along with patents, copyrights, and trademarks, are commonly regarded in the law as intellectual property that can be said to belong to an owner.
+    * **Drawback** A patent confers a legal monopoly for a fixed number of years, which raises the price that the public pays for the products of patent holders during that time.
+    1. **Advantages** Society generally benefits from the willingness of companies to innovate, but without the legal protection provided by patent and trade secret laws, companies would have less incentive to make the costly investments in research and development that innovation requires.
+    2. Patent and copyright laws encourage a free flow of information, which leads to additional benefits. Patent holders are granted a period of 20 years (In India) in which to capitalize on their discoveries, but even during the period of the patent, others can use the information in their research and perhaps make new discoveries.
   * The question of who owns what becomes more complicated if the inventor is himself employed by a manufacturer of the product in question.
   * As long as he gets his ideas while performing unrelated work - conducts the experiments on his own time using his own materials and facilities, it seems only right that he be recognized as the sole owner.
   * If, on the other hand, he is hired as an inventor to develop improved methods of manufacture or if he does his creative work on his employer’s time with the resources of his employer, then some or all the rights of ownership could reasonably be claimed to belong to the employer.
-
+    *  In many cases Companies require employees to sign an agreement turning over all patent rights to the employer.
+    * Such agreements are morally objectionable when they give companies a claim on discoveries that are outside the scope of an employee’s responsibilities and make no use of the employer’s facilities and resources
+    * But the bureaucracy is so powerful a lone inventor may loose all claim on his/her product.
 2. Trade secrets as principles of fair competition.
   * Protection of trade secretes help companies to have fair competition among competitors.
   * Because of the difficulty of imposing legal restraints on employees after they leave, many companies require employees to sign a **non competition agreement** when they are hired. These agreements typically restrict an employee from working for a competitor for a certain period of time
