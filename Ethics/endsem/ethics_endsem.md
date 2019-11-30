@@ -38,7 +38,7 @@
 2. Misrepresentation
   * To gain information under false pretences is a form of deception that violates the duty to be honest in all dealings.
   * Posing as a customer to obtain information from a competitor.
-  * under the guise of doing a study of the industry which might contain confidential technical information about the bidder’s products.
+  * Under the guise of doing a study of the industry which might contain confidential technical information about the bidder’s products.
   * To get information some companies have advertised and conducted interviews for positions that do not exist, in the hope that some applicants would inadvertently reveal trade secrets of their present employer.
 3. Improper Influence
   * The employment relation is built on trust, and to induce an employee to reveal information through bribery or some other means is to undermine that trust.
@@ -67,10 +67,10 @@
 ### Examples
 
 * Jeffrey Swartz (leader of company Timberland) launched "Path of Service" under which employees were to devote fixed number of company hours for community service, this was optional for employees but they were encouraged to do so for their favored causes.
-* Taking advantage of an economic opportunity that is judged to be less profitable but more socially desirable than some alternatives (Starbucks coffee)
-* Using corporate resources to operate a program that addresses some major social problem
-* Making contributions to civic and charitable organizations and nonprofit institutions
-* Providing benefits for employees and improving the quality of life
+* Taking advantage of an economic opportunity that is judged to be less profitable but more socially desirable than some alternatives (Starbucks coffee).
+* Using corporate resources to operate a program that addresses some major social problem.
+* Making contributions to civic and charitable organizations and nonprofit institutions.
+* Providing benefits for employees and improving the quality of life.
 * Coca-Cola recycling, thinking about environment (environment sustainability), helping water reach the poor in south africa (**eradicating hunger and poverty**).
   * In developing countries, around 6 million children die each year. 
 * Contributing to Prime Minister's relief fund and other such state and central funds.
@@ -80,8 +80,8 @@
 
 * On the one hand, India has grown to be one of the largest economies in the world, and an increasingly important player in the emerging global order,
 * on the other hand, it is still home to the largest number of people living in absolute poverty and the largest number of undernourished children.
-* What emerges is a picture of uneven distribution of the benefits of growth
-* social unrest
+* What emerges is a picture of uneven distribution of the benefits of growth.
+* Social unrest.
 * Many companies have been quick to sense this development, and have responded proactively while others have done so only when pushed.
 * Governments as well as regulators have responded to this unrest and the CSR clause within the Companies Act, 2013 is the step towards regularity.
 
