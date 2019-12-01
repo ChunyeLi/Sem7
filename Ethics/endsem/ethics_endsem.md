@@ -14,13 +14,13 @@
     2. Patent and copyright laws encourage a free flow of information, which leads to additional benefits. Patent holders are granted a period of 20 years (In India) in which to capitalize on their discoveries, but even during the period of the patent, others can use the information in their research and perhaps make new discoveries.
   * The question of who owns what becomes more complicated if the inventor is himself employed by a manufacturer of the product in question.
   * As long as he gets his ideas while performing unrelated work - conducts the experiments on his own time using his own materials and facilities, it seems only right that he be recognized as the sole owner.
-  * If, on the other hand, he is hired as an inventor to develop improved methods of manufacture or if he does his creative work on his employer’s time with the resources of his employer, then some or all the rights of ownership could reasonably be claimed to belong to the employer.
+  * If, on the other hand, he is hired as an inventor to develop improved methods of manufacture or if he does his creative work on his employer’s time with the resources of his employer, then some or all the rights of ownership could reasonably be claimed to belong to the employer. (This is as well called as **Lockean view** - we own the results of our labour)
     *  In many cases Companies require employees to sign an agreement turning over all patent rights to the employer.
     * Such agreements are morally objectionable when they give companies a claim on discoveries that are outside the scope of an employee’s responsibilities and make no use of the employer’s facilities and resources
     * But the bureaucracy is so powerful a lone inventor may loose all claim on his/her product.
 2. Trade secrets as principles of fair competition.
-  * Protection of trade secretes help companies to have fair competition among competitors.
-  * Because of the difficulty of imposing legal restraints on employees after they leave, many companies require employees to sign a **non competition agreement** when they are hired. These agreements typically restrict an employee from working for a competitor for a certain period of time
+  * Protection of trade secrets help companies to have fair competition among competitors.
+  * Because of the difficulty of imposing legal restraints on employees after they leave, many companies require employees to sign a **non competition agreement** when they are hired. These agreements typically restrict an employee from working for a competitor for a certain period of time.
 3. Trade secrets as violation of confidentiality.
   * The third argument for trade secret protection is that employees who disclose trade secrets to others or use them themselves are guilty of violating an obligation of confidentiality.
   * This argument is based on the view that employees agree as a condition of employment to become agents of an employer and be bound by the duty that agents have to preserve the confidentiality of certain information.
@@ -49,11 +49,9 @@
 ### Conflict of Interest
 
 * Occurs when a personal interest interferes with a person’s acting so as to promote the interests of another when the person has an obligation (i.e. agent (employee) has an obligation to act for principal (employer)) to act in that other person’s interest .
-* In conflict of interest: The duties of an agent are not determined solely by a list of moral rules but by the nature of the interests to be served
+* In conflict of interest: The duties of an agent are not determined solely by a list of moral rules but by the nature of the interests to be served.
 
-
-
-**Conclusion:** Trade secrets and conflict of interest involve a delicate balancing of the rights and interests of employers and employees, as well as the public at large
+**Conclusion:** Trade secrets and conflict of interest involve a delicate balancing of the rights and interests of employers and employees, as well as the public at large.
 
 ## CSR - Corporate Social Responsibility
 
@@ -62,7 +60,7 @@
 * They can take help from NGO's.
 * The well known economist Milton Friedman writes, in Capitalism and Freedom, “Few trends could so thoroughly undermine the very foundations of our free society as the acceptance by corporate officials of a social responsibility other than making as much money for their stockholders as possible”.
 * Haves and have-nots
-* Poverty and famine : caused by inefficient or corrupt political and business institutions
+* Poverty and famine : caused by inefficient or corrupt political and business institutions (another example is most polluted river - Citarum river on the island of Java, Indonesia)
 
 ### Examples
 
