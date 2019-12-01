@@ -57,7 +57,6 @@
 
 * “the responsibility of enterprises for their impacts on society”.
 * “the continuing commitment by business to contribute to economic development while improving the quality of life of the workforce and their families as well as of the community and society at large.”
-* They can take help from NGO's.
 * The well known economist Milton Friedman writes, in Capitalism and Freedom, “Few trends could so thoroughly undermine the very foundations of our free society as the acceptance by corporate officials of a social responsibility other than making as much money for their stockholders as possible”.
 * Haves and have-nots
 * Poverty and famine : caused by inefficient or corrupt political and business institutions (another example is most polluted river - Citarum river on the island of Java, Indonesia)
@@ -67,19 +66,20 @@
 * Jeffrey Swartz (leader of company Timberland) launched "Path of Service" under which employees were to devote fixed number of company hours for community service, this was optional for employees but they were encouraged to do so for their favored causes.
 * Taking advantage of an economic opportunity that is judged to be less profitable but more socially desirable than some alternatives (Starbucks coffee).
 * Using corporate resources to operate a program that addresses some major social problem.
-* Making contributions to civic and charitable organizations and nonprofit institutions.
+* Making contributions to civic and charitable organizations and nonprofit institutions. (Thus taking help of NGO's)
 * Providing benefits for employees and improving the quality of life.
 * Coca-Cola recycling, thinking about environment (environment sustainability), helping water reach the poor in south africa (**eradicating hunger and poverty**).
   * In developing countries, around 6 million children die each year. 
 * Contributing to Prime Minister's relief fund and other such state and central funds.
-* Promoting education.
+* Promoting education. (Again can use corporate resources)
 
 ### Indian Context
 
 * On the one hand, India has grown to be one of the largest economies in the world, and an increasingly important player in the emerging global order,
 * on the other hand, it is still home to the largest number of people living in absolute poverty and the largest number of undernourished children.
+* The richest 1% of Indians own 58.4% of wealth.
 * What emerges is a picture of uneven distribution of the benefits of growth.
-* Social unrest.
+* Social unrest (Naxalism).
 * Many companies have been quick to sense this development, and have responded proactively while others have done so only when pushed.
 * Governments as well as regulators have responded to this unrest and the CSR clause within the Companies Act, 2013 is the step towards regularity.
 
