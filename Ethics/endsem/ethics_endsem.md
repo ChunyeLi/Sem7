@@ -98,7 +98,7 @@
 ### Corporate social responsiveness
 
 * It refers to the capacity of a corporation to respond to social pressures.
-* Thus, a socially responsive corporation uses its resources to anticipate social issues and develop policies, programs, and other means of dealing with them.
+* Thus, a socially responsive corporation uses its resources to anticipate social issues and develop policies, programs, and other means of dealing with them. (Like NASA satellite image of crop burning in Punjab and Haryana)
 
 
 
